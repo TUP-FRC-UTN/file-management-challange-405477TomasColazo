@@ -10,13 +10,9 @@
       </tr>
     </thead>
     <tbody>
-      <app-file-row class="table-line"> </app-file-row>
-      <app-file-row class="table-line"> </app-file-row>
-      <app-file-row class="table-line"> </app-file-row>
-      <app-file-row class="table-line"> </app-file-row>
-      <app-file-row class="table-line"> </app-file-row>
-      <app-file-row class="table-line"> </app-file-row>
-      <app-file-row class="table-line"> </app-file-row>
+      @for (file of files; track $index) {
+      <app-file-row class="table-line" [file]="file"></app-file-row>
+      }
     </tbody>
   </table>
 </div>

@@ -1,8 +1,20 @@
 <tr>
   <td><input type="checkbox" /></td>
-  <td><i class="bi bi-folder"></i> abcd</td>
-  <td>Sep 5, 2024</td>
   <td>
-    <app-file-owners></app-file-owners>
+    <i
+      *ngIf="file.type == FileType.FOLDER; else fileIcon"
+      class="bi bi-folder"
+    ></i>
+    {{ file.name }}
+  </td>
+  <td>{{ file.creation | date : "dd/MM/yyyy" }}</td>
+  <td>
+    @for (owner of file.owners; track $index) {
+    <app-file-owners [owner]="owner"></app-file-owners>
+    }
   </td>
 </tr>
+
+<ng-template #fileIcon>
+  <i class="bi bi-file-earmark"></i>
+</ng-template>
