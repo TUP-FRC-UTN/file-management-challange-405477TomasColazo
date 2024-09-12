@@ -11,8 +11,9 @@
     </thead>
     <tbody>
       @for (file of files; track $index) {
-      <app-file-row class="table-line" [file]="file"></app-file-row>
+      <app-file-row class="table-line table-hover" [file]="file"></app-file-row>
       }
     </tbody>
   </table>
+  <app-form></app-form>
 </div>

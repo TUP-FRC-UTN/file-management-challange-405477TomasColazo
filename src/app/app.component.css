@@ -1,3 +1,7 @@
 .table-line {
   display: contents;
 }
+.container {
+  border: solid black 1px;
+  border-radius: 6px;
+}
