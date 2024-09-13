@@ -19,5 +19,6 @@ export class OwnerSelectComponent {
     if (this.selectedOwner != null) {
       this.sendOwnerEmit.emit(this.selectedOwner);
     }
+    this.selectedOwner = null;
   }
 }

@@ -1,6 +1,6 @@
 <div class="container mt-4">
-  <app-file-actions-var></app-file-actions-var>
-  <table class="table table-hover">
+  <app-file-actions-var (cambiarPantalla)="changeForm()"></app-file-actions-var>
+  <table class="table table-hover" *ngIf="!showForm">
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -15,5 +15,9 @@
       }
     </tbody>
   </table>
-  <app-form></app-form>
+  <app-form
+    [foldersList]="files"
+    *ngIf="showForm"
+    (sendEmit)="pushFile($event)"
+  ></app-form>
 </div>

@@ -13,7 +13,11 @@
           Acciones
         </button>
         <ul class="dropdown-menu" aria-labelledby="accionesMenu">
-          <li><a class="dropdown-item" href="#">Nuevo</a></li>
+          <li>
+            <a class="dropdown-item" href="#" (click)="nuevoForm()"
+              >{{ nuevo ? "Nuevo" : "Cancelar" }}
+            </a>
+          </li>
           <li><a class="dropdown-item" href="#">Borrar</a></li>
         </ul>
       </div>

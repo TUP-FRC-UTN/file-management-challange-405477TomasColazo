@@ -5,6 +5,7 @@ import { FILE_LIST } from '../data/file.storage';
 import { FileActionsVarComponent } from './file-actions-var/file-actions-var.component';
 import { FileRowComponent } from './file-row/file-row.component';
 import { FormComponent } from './form/form.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ import { FormComponent } from './form/form.component';
     FileActionsVarComponent,
     FileRowComponent,
     FormComponent,
+    CommonModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
@@ -22,6 +24,11 @@ export class AppComponent {
   files: FileItem[] = FILE_LIST;
 
   title = 'file-management';
+  showForm: boolean = false;
+
+  changeForm() {
+    this.showForm = !this.showForm;
+  }
 
   ordenarLista(array: FileItem[]) {
     array.sort((a, b) => {
@@ -35,6 +42,7 @@ export class AppComponent {
   pushFile(file: FileItem) {
     this.files.push(file);
     this.ordenarLista(this.files);
+    this.changeForm();
   }
 
   eliminarFile(index: number) {

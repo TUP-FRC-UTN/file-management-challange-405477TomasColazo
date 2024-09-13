@@ -9,7 +9,19 @@
       id="nombreInput"
       name="nombre"
       [(ngModel)]="file.name"
+      [ngClass]="{
+        'is-invalid': nombre.invalid && (nombre.dirty || nombre.touched),
+        'is-valid': nombre.valid
+      }"
+      required
+      minlength="5"
     />
+    @if(nombre.invalid && (nombre.dirty || nombre.touched)){
+    @if(nombre.getError('required')) {
+    <div class="text-danger">El nombre es obligatorio</div>
+    }@else{
+    <div class="text-danger">Debe contener como minimo 5 caracteres.</div>
+    }}
   </div>
   <div class="mb-3">
     <label for="fechaInput" class="form-label">Fecha</label>
@@ -20,7 +32,18 @@
       id="fechaInput"
       name="fecha"
       [(ngModel)]="file.creation"
+      [ngClass]="{
+        'is-invalid': isInvalidDate() && (fecha.dirty || fecha.touched),
+        'is-valid': !isInvalidDate() && fecha.valid
+      }"
+      required
     />
+    @if(isInvalidDate() && (fecha.dirty || fecha.touched)){ @if
+    (fecha.getError("required")) {
+    <div class="text-danger">La fecha es obligatoria</div>
+    } @else {
+    <div class="text-danger">Debe ingresar una fecha valida</div>
+    }}
   </div>
   <div class="mb-3">
     <label for="tipoSelect" class="form-label">Tipo de archivo</label>
@@ -33,6 +56,9 @@
   <div class="mb-3">
     <label for="folderSelect" class="form-label">Carpeta</label>
     <select class="form-control" name="carpeta" [(ngModel)]="file.parentId">
+      <option [ngValue]="undefined" selected>
+        Seleccione un directorio (opcional)
+      </option>
       @for (carpeta of foldersList; track $index) {
       <option [value]="carpeta.id">{{ carpeta.name }}</option>
       }
@@ -45,4 +71,11 @@
       (sendOwnerEmit)="addOwner($event)"
     ></app-owner-select>
   </div>
+  <div class="mb-3">
+    @for (owner of file.owners; track $index) {<app-file-owners
+      [owner]="owner"
+    ></app-file-owners
+    >}
+  </div>
+  <button type="submit" class="btn btn-primary mb-3">Guardar</button>
 </form>
