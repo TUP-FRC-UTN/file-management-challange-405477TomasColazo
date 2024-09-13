@@ -1,5 +1,5 @@
 <tr>
-  <td><input type="checkbox" /></td>
+  <td><input type="checkbox" (change)="onCheckboxChange($event)" /></td>
   <td>
     <i
       *ngIf="file.type == FileType.FOLDER; else fileIcon"

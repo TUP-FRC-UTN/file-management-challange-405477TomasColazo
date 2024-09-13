@@ -25,9 +25,21 @@ export class AppComponent {
 
   title = 'file-management';
   showForm: boolean = false;
+  selectedIndexFiles: number[] = [];
 
   changeForm() {
     this.showForm = !this.showForm;
+  }
+
+  onFileCheked(event: { index: number; checked: boolean }) {
+    console.log(event);
+    if (event.checked) {
+      this.selectedIndexFiles.push(event.index);
+    } else {
+      this.selectedIndexFiles = this.selectedIndexFiles.filter(
+        (index) => index !== event.index
+      );
+    }
   }
 
   ordenarLista(array: FileItem[]) {
@@ -51,5 +63,13 @@ export class AppComponent {
 
   ngOnInit() {
     this.ordenarLista(this.files);
+  }
+  borrarFiles() {
+    console.log(this.selectedIndexFiles);
+    this.files = this.files.filter(
+      (_, index) => !this.selectedIndexFiles.includes(index)
+    );
+    this.selectedIndexFiles = [];
+    console.log(this.selectedIndexFiles);
   }
 }

@@ -10,10 +10,15 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class FileActionsVarComponent {
   nuevo: boolean = true;
   @Output() cambiarPantalla = new EventEmitter();
+  @Output() borrarSeleccion = new EventEmitter();
   nuevoForm() {
     this.cambiarPantalla.emit();
     console.log(this.nuevo);
     this.nuevo = !this.nuevo;
     console.log(this.nuevo);
+  }
+
+  borrar() {
+    this.borrarSeleccion.emit();
   }
 }
